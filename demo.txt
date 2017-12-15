@@ -1,0 +1,17 @@
+Minim minim;
+AudioPlayer mySound;
+BeatDetect beat;
+BeatListener bl;
+
+float kickSize, snareSize, hatSize;
+
+void setup(){
+  size(900, 900,P3D);
+  noStroke();
+  minim = new Minim(this);
+  mySound = minim.loadFile("DJ Snake, Lil Jon - Turn Down for What.mp3");
+  mySound.loop();
+   beat = new BeatDetect(mySound.bufferSize(),mySound.sampleRate());
+   beat.setSensitivity(100);
+   kickSize = snareSize = hatSize = 5;
+   bl = new BeatListener(beat, mySound);
